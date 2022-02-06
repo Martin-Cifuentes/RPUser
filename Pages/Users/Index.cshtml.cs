@@ -21,11 +21,6 @@ namespace RPUser.Pages.Users
             _context = context;
         }
 
-        /*public IActionResult OnGet()
-        {
-            return Page();
-        }*/
-
         [BindProperty]
         public User User { get; set; }
 
@@ -39,8 +34,17 @@ namespace RPUser.Pages.Users
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-
-            return RedirectToPage("./Tableview");
+            foreach (User type in _context.User)
+            {
+                if (type.UserName.Equals(User.UserName))
+                {
+                    if (type.Password.Equals(User.Password))
+                    {
+                        return RedirectToPage("./Tableview"); ;
+                    }
+                }
+            }
+            return RedirectToPage("./Create");
         }
     }
 }
