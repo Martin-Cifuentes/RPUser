@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using RPUser.Data;
 using RPUser.Models;
 
@@ -20,24 +21,24 @@ namespace RPUser.Pages.Users
             _context = context;
         }
 
-        public IActionResult OnGet()
+        /*public IActionResult OnGet()
         {
             return Page();
-        }
+        }*/
 
         [BindProperty]
         public User User { get; set; }
 
+        public IList<User> Users { get; set; }
+
+        public async Task OnGetAsync()
+        {
+            Users = await _context.User.ToListAsync();
+        }
+
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            /*if (!ModelState.IsValid)
-            {
-                return Page();
-            }*/
-
-            //_context.User.Add(User);
-            //await _context.SaveChangesAsync();
 
             return RedirectToPage("./Tableview");
         }

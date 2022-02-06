@@ -26,21 +26,5 @@ namespace RPUser.Pages.Users
         {
             User = await _context.User.ToListAsync();
         }
-
-        /*public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            User = await _context.User.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (User == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }*/
     }
 }
