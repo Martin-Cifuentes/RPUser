@@ -42,9 +42,17 @@ namespace RPUser.Pages.Users
                     {
                         return RedirectToPage("./Tableview"); ;
                     }
+                    else
+                    {
+                        return Page();
+                    }
+                }
+                else
+                {
+                    return Page();
                 }
             }
-            return RedirectToPage("./Create");
+            return Page();
         }
     }
 }
